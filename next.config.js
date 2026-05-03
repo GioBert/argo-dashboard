@@ -4,7 +4,7 @@ const cspHeader = `
   base-uri 'self';
   font-src 'self';
   form-action 'self';
-  frame-ancestors 'self';
+  frame-ancestors 'self' https://homeassistant.pds.casa https://homeassistant.local:8123 http://homeassistant.local:8123 https://*.pds.casa;
   img-src 'self' blob: data:;
 	manifest-src 'self';
   object-src 'none';
@@ -55,7 +55,6 @@ const nextConfig = {
 								key: "Content-Security-Policy",
 								value: cspHeader.replace(/\n/g, ""),
 							},
-							{ key: "X-Frame-Options", value: "SAMEORIGIN" },
 							{ key: "X-Content-Type-Options", value: "nosniff" },
 							{ key: "X-XSS-Protection", value: "1" },
 						],
