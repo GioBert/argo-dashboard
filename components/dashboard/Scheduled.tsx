@@ -17,6 +17,7 @@ const iconPromemoria = dynamic(
 const iconRicevimento = dynamic(
 	() => import("../../icons/ricevimento-docenti.svg")
 );
+const dayMs = 24 * 60 * 60 * 1000;
 
 const Scheduled = ({
 	now,
@@ -74,7 +75,14 @@ const Scheduled = ({
 						.filter(
 							tomorrow === undefined
 								? (c) => Date.parse(c.dataConsegna) >= tomorrowTime
-								: (c) => c.dataConsegna === tomorrow
+								: (c) => {
+										const dueTime = Date.parse(c.dataConsegna);
+										return (
+											!Number.isNaN(dueTime) &&
+											dueTime >= tomorrowTime - dayMs &&
+											dueTime < tomorrowTime
+										);
+								  }
 						)
 						.map((c) => {
 							const d = new Date(c.dataConsegna);
@@ -88,6 +96,7 @@ const Scheduled = ({
 										icon={iconCompiti}
 										headerTitle={event.docente}
 										header={event.materia}
+										defaultExpanded
 									/>
 								),
 								date: d,

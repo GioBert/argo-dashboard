@@ -38,7 +38,11 @@ const Dashboard = () => {
 			}`}
 		>
 			<Column name="Compiti e impegni" id="compitiImpegni">
-				<Entry name="Entro domani" id="entroDomani">
+				<Entry
+					name="Entro domani"
+					id="entroDomani"
+					className="lg:h-auto lg:max-h-none lg:min-h-80"
+				>
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 							<Scheduled
@@ -49,7 +53,11 @@ const Dashboard = () => {
 						</LoadingPlaceholder>
 					</div>
 				</Entry>
-				<Entry name="Successivi" id="successivi">
+				<Entry
+					name="Successivi"
+					id="successivi"
+					className="lg:h-auto lg:max-h-none lg:min-h-80"
+				>
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 							<Scheduled tomorrowTime={tomorrowTime} />
@@ -83,7 +91,11 @@ const Dashboard = () => {
 				</Entry>
 			</Column>
 			<Column name="Aggiornamenti" id="aggiornamenti">
-				<Entry name="Recenti" id="recenti">
+				<Entry
+					name="Recenti"
+					id="recenti"
+					className="lg:h-auto lg:max-h-none lg:min-h-80"
+				>
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 							<Updates now={now} weekStart={weekStart} />

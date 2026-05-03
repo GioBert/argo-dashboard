@@ -1,5 +1,7 @@
+import DownloadDebugPayload from "@/components/dashboard/DownloadDebugPayload";
 import LogOutButton from "@/components/dashboard/LogOutButton";
 import RimuoviDati from "@/components/dashboard/RimuoviDati";
+import Link from "next/link";
 import { bold } from "../../fonts";
 
 const Options = () => (
@@ -53,6 +55,21 @@ const Options = () => (
 						browser e app sullo stesso dispositivo.
 					</div>
 					<LogOutButton />
+				</div>
+			</div>
+			<div className="border rounded-lg mt-6 mb-4 text-left p-4">
+				<h3 className={`${bold.className} text-xl`}>Debug locale</h3>
+				<div className="flex flex-col lg:flex-row items-center justify-center pt-2 lg:pt-4 gap-4">
+					<div className="flex-1">
+						Questa sezione serve solo per capire cosa e&apos; realmente arrivato
+						nel browser da Argo. Utile quando una pagina sembra vuota ma non e&apos;
+						chiaro se manchi il dato o il rendering.
+						<br />
+						<Link href="/dashboard/debug" className="link">
+							Apri pagina di debug
+						</Link>
+					</div>
+					<DownloadDebugPayload />
 				</div>
 			</div>
 		</div>

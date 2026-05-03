@@ -32,6 +32,7 @@ const ListElement = ({
 	title,
 	headerTitle,
 	popup: PopupComponent,
+	defaultExpanded = false,
 }: {
 	icon: React.ComponentType<SVGProps<SVGElement>>;
 	date: Date;
@@ -41,6 +42,7 @@ const ListElement = ({
 	title?: string;
 	headerTitle?: string;
 	popup?: React.ComponentType<{ setOpen: Dispatch<SetStateAction<boolean>> }>;
+	defaultExpanded?: boolean;
 }) => {
 	const [open, setOpen] = useState(false);
 
@@ -68,7 +70,11 @@ const ListElement = ({
 					)}
 				</div>
 				<div className={`text-base ${light.className}`}>
-					<ExpandText title={title} content={content} />
+					<ExpandText
+						title={title}
+						content={content}
+						defaultExpanded={defaultExpanded}
+					/>
 					{children}
 				</div>
 			</TouchableOpacity>

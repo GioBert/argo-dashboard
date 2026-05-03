@@ -13,6 +13,7 @@ const Allegato = dynamic(() => import("./Allegato"));
 const VotoPopup = dynamic(
 	() => import("@/app/dashboard/menu/votiGiornalieri/PopupVoto")
 );
+const PopupMessaggio = dynamic(() => import("./PopupMessaggio"));
 const iconBachecaAlunno = dynamic(
 	() => import("../../icons/bacheca-alunno.svg")
 );
@@ -126,6 +127,34 @@ const Updates = ({
 							date={new Date(event.data)}
 							icon={iconBacheca}
 							header={event.autore}
+							popup={({ setOpen }) => (
+								<PopupMessaggio
+									setOpen={setOpen}
+									title={event.autore}
+									subtitle={event.categoria}
+									dateLabel={event.data}
+									sections={[
+										{ label: "Messaggio", value: event.messaggio },
+										{ label: "Categoria", value: event.categoria },
+									]}
+									attachments={
+										event.listaAllegati[0]
+											? event.listaAllegati
+													.map<React.ReactNode>((allegato) => (
+														<Allegato
+															allegato={allegato}
+															getLink={client.getLinkAllegato.bind(
+																client,
+																allegato.pk
+															)}
+															key={allegato.pk}
+														/>
+													))
+													.reduce((prev, curr) => [prev, " - ", curr])
+											: undefined
+									}
+								/>
+							)}
 						>
 							{event.listaAllegati[0] && (
 								<>
@@ -166,9 +195,30 @@ const Updates = ({
 							date={new Date(event.data)}
 							icon={iconBachecaAlunno}
 							header={event.messaggio}
+							popup={({ setOpen }) => (
+								<PopupMessaggio
+									setOpen={setOpen}
+									title={event.messaggio}
+									subtitle={event.nomeFile}
+									dateLabel={event.data}
+									sections={[
+										{ label: "Messaggio", value: event.messaggio },
+										{ label: "File", value: event.nomeFile },
+									]}
+									attachments={
+										<Allegato
+											allegato={event}
+											getLink={client.getLinkAllegatoStudente.bind(
+												client,
+												event.pk
+											)}
+										/>
+									}
+								/>
+							)}
 						>
 							{" "}
-							—{" "}
+							-{" "}
 							<Allegato
 								allegato={event}
 								getLink={client.getLinkAllegatoStudente.bind(client, event.pk)}
