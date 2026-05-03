@@ -1,0 +1,22 @@
+services:
+  argo-dashboard:
+    build:
+      context: .
+    container_name: argo-dashboard
+    restart: unless-stopped
+    ports:
+      - "3015:3000"
+    environment:
+      NODE_ENV: production
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://127.0.0.1:3000', (res) => process.exit(res.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s

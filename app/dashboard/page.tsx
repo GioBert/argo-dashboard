@@ -37,6 +37,26 @@ const Dashboard = () => {
 				state === State.NoDashboard ? "blur-sm" : ""
 			}`}
 		>
+			<Column name="Compiti e impegni" id="compitiImpegni">
+				<Entry name="Entro domani" id="entroDomani">
+					<div className="flex flex-col">
+						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
+							<Scheduled
+								tomorrowTime={tomorrowTime}
+								now={now}
+								tomorrow={tomorrow}
+							/>
+						</LoadingPlaceholder>
+					</div>
+				</Entry>
+				<Entry name="Successivi" id="successivi">
+					<div className="flex flex-col">
+						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
+							<Scheduled tomorrowTime={tomorrowTime} />
+						</LoadingPlaceholder>
+					</div>
+				</Entry>
+			</Column>
 			<Column name="Media" id="media">
 				<Entry name="Generale" id="generale">
 					<div className="flex flex-col justify-center items-center h-full -mt-1">
@@ -60,26 +80,6 @@ const Dashboard = () => {
 					<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
 						<Averages />
 					</LoadingPlaceholder>
-				</Entry>
-			</Column>
-			<Column name="Prossimi impegni" id="prossimiImpegni">
-				<Entry name="Entro domani" id="perMateria">
-					<div className="flex flex-col">
-						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-							<Scheduled
-								tomorrowTime={tomorrowTime}
-								now={now}
-								tomorrow={tomorrow}
-							/>
-						</LoadingPlaceholder>
-					</div>
-				</Entry>
-				<Entry name="Successivi" id="successivi">
-					<div className="flex flex-col">
-						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-							<Scheduled tomorrowTime={tomorrowTime} />
-						</LoadingPlaceholder>
-					</div>
 				</Entry>
 			</Column>
 			<Column name="Aggiornamenti" id="aggiornamenti">
