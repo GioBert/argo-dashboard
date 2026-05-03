@@ -13,6 +13,11 @@ export const ClientContext = createContext(
 const MayNeedLogin = dynamic(() => import("./MayNeedLogin"));
 const client = new WebClient();
 
+// In browsers, calling the raw global fetch through an unbound class property
+// can trigger "Illegal invocation". Re-wrap it so the client always uses a
+// safe callable function.
+client.fetch = (...args) => fetch(...args);
+
 const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, setState] = useState(State.FirstLoading);
 
