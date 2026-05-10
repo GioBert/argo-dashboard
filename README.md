@@ -3,6 +3,13 @@
 ![Preview](public/preview.png)
 Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP).
 
+## Baseline workstation
+
+Per il contesto operativo comune della macchina Windows usata con VS Code e Codex, fare riferimento a:
+- [../WORKSTATION_CONTEXT.md](../WORKSTATION_CONTEXT.md)
+
+Eventuali prerequisiti locali aggiuntivi specifici di questo progetto vanno documentati qui solo se eccedono quella baseline.
+
 ## Funzionalità
 
 Visualizza in modo compatto ciò che conta.
