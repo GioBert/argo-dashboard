@@ -10,6 +10,18 @@ Per il contesto operativo comune della macchina Windows usata con VS Code e Code
 
 Eventuali prerequisiti locali aggiuntivi specifici di questo progetto vanno documentati qui solo se eccedono quella baseline.
 
+## Fork self-hosted
+
+Questo fork non usa solo il deployment originale del progetto upstream.
+
+Nel contesto operativo attuale:
+
+- il servizio pubblico di riferimento e' `https://argo.pds.casa`
+- il runtime reale e' su Raspberry
+- il runbook operativo sta in [DEPLOYMENT.md](DEPLOYMENT.md)
+
+Per interventi su deploy, login/logout, rebuild Docker o troubleshooting del bundle Next.js, usare quel documento come fonte primaria.
+
 ## Funzionalità
 
 Visualizza in modo compatto ciò che conta.
