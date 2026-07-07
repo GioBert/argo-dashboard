@@ -1,0 +1,8 @@
+node_modules/
+.env
+coverage/
+dist/
+.argo/
+.vscode/settings.json
+./types/
+tsconfig.tsbuildinfo

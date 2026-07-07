@@ -20,3 +20,20 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+
+  argo-telegram-bot:
+    build:
+      context: .
+      dockerfile: services/telegram-bot/Dockerfile
+    container_name: argo-telegram-bot
+    restart: unless-stopped
+    env_file:
+      - ./services/telegram-bot/.env.local
+    environment:
+      NODE_ENV: production
+      BOT_STATE_PATH: /app/data/state.json
+    volumes:
+      - argo-telegram-bot-data:/app/data
+
+volumes:
+  argo-telegram-bot-data:

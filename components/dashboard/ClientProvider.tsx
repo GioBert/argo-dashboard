@@ -18,6 +18,14 @@ const client = new WebClient();
 // safe callable function.
 client.fetch = (...args) => fetch(...args);
 
+const clearClientSession = () => {
+	localStorage.clear();
+	delete client.token;
+	delete client.loginData;
+	delete client.profile;
+	delete client.dashboard;
+};
+
 const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, setState] = useState(State.FirstLoading);
 
@@ -35,7 +43,7 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 					setState(State.Offline);
 				})
 				.catch(() => {
-					localStorage.clear();
+					clearClientSession();
 					setState(State.NeedLogin);
 				});
 			return;
@@ -46,7 +54,8 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 				setState(State.Ready);
 			})
 			.catch(() => {
-				setState(State.MayNeedLogin);
+				clearClientSession();
+				setState(State.NeedLogin);
 			});
 	}, []);
 	return (
